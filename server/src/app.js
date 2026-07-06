@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
-require("dotenv").config();
+require("dotenv").config({ path: require("path").resolve(__dirname, "../.env") });
 
 const { poolPromise } = require("./config/db");
 
@@ -10,15 +10,19 @@ const { poolPromise } = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const authRoutes = require("./routes/authRoutes");
 
+// Middleware
+const { protect } = require("./middleware/authMiddleware");
+
 const app = express();
 
-// Middlewares
+// Global Middlewares
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
 
 
+// Test Database Connection
 app.get("/api/test-db", async (req, res) => {
     try {
         const pool = await poolPromise;
@@ -39,30 +43,27 @@ app.get("/api/test-db", async (req, res) => {
 });
 
 
+// Routes
 app.use("/api/auth", authRoutes);
-
-
 app.use("/api/users", userRoutes);
 
 
-app.get("/api/protected", (req, res) => {
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader) {
-        return res.status(401).json({
-            message: "No token provided"
-        });
-    }
-
-    const token = authHeader.split(" ")[1];
-
+// Protected Route
+app.get("/api/protected", protect, (req, res) => {
     res.json({
-        message: "Token received successfully 🔐",
-        yourToken: token
+        message: "Access granted! 🔐",
+        user: req.user
     });
 });
 
 
+// Home Route (Optional)
+app.get("/", (req, res) => {
+    res.send("🚀 MedLink Ethiopia API is running...");
+});
+
+
+// Start Server
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
