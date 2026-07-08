@@ -1,70 +1,125 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../api/api";
+import "./Login.css";
 
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
     const navigate = useNavigate();
 
+
     const handleLogin = async (e) => {
-    e.preventDefault();
 
-    console.log("Login button clicked");
+        e.preventDefault();
 
-    try {
-        const response = await API.post("/auth/login", {
-            email,
-            password
-        });
+        try {
 
-        localStorage.setItem("token", response.data.token);
+            const response = await API.post("/auth/login", {
+                email,
+                password
+            });
 
-alert("Login Successful!");
 
-navigate("/dashboard");
+            localStorage.setItem(
+                "token",
+                response.data.token
+            );
 
-    } catch (error) {
-    console.log("Full Error:", error);
-    console.log("Response:", error.response);
-    console.log("Data:", error.response?.data);
-    console.log("Message:", error.message);
-}
-};
+
+            navigate("/dashboard");
+
+
+        } catch (error) {
+
+            console.log(error);
+
+            alert("Invalid email or password");
+
+        }
+
+    };
+
 
     return (
-        <div>
-            <h1>MedLink Ethiopia</h1>
-            <h2>Login</h2>
 
-            <form onSubmit={handleLogin}>
+        <div className="login-container">
 
-                <input
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
 
-                <br />
+            <div className="login-card">
 
-                <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
 
-                <br />
+                <h1>
+                    MedLink Ethiopia
+                </h1>
 
-                <button type="submit" onClick={() => console.log("button pressed")}>
-    Login
-</button>
 
-            </form>
+                <h2>
+                    Healthcare Management System
+                </h2>
+
+
+                <p>
+                    Login to access your account
+                </p>
+
+
+
+                <form onSubmit={handleLogin}>
+
+
+                    <input
+
+                        type="email"
+
+                        placeholder="Email"
+
+                        value={email}
+
+                        onChange={(e) =>
+                            setEmail(e.target.value)
+                        }
+
+                    />
+
+
+
+                    <input
+
+                        type="password"
+
+                        placeholder="Password"
+
+                        value={password}
+
+                        onChange={(e) =>
+                            setPassword(e.target.value)
+                        }
+
+                    />
+
+
+
+                    <button type="submit">
+
+                        Login
+
+                    </button>
+
+
+                </form>
+
+
+            </div>
+
+
         </div>
+
     );
+
 }
+
 
 export default Login;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import API from "../api/api";
+import "./Doctors.css";
 
 function Doctors() {
 
@@ -36,33 +37,48 @@ function Doctors() {
 
             <Navbar />
 
-            <h1>Doctors</h1>
+            <div className="page">
 
-            {
-                doctors.map((doctor) => (
-                    <div key={doctor.doctor_id}>
+                <h1>
+                    Doctors
+                </h1>
 
-                        <p>
-                            User ID: {doctor.user_id}
-                        </p>
 
-                        <p>
-                            Specialization: {doctor.specialization}
-                        </p>
+                <div className="cards">
 
-                        <p>
-                            Phone: {doctor.phone}
-                        </p>
+                    {
+                        doctors.map((doctor) => (
 
-                        <p>
-                            Experience: {doctor.experience_years} years
-                        </p>
+                            <div className="card" key={doctor.doctor_id}>
 
-                        <hr />
+                                <h3>
+                                    Doctor ID: {doctor.doctor_id}
+                                </h3>
 
-                    </div>
-                ))
-            }
+                                <p>
+                                    User ID: {doctor.user_id}
+                                </p>
+
+                                <p>
+                                    Specialization: {doctor.specialization}
+                                </p>
+
+                                <p>
+                                    Phone: {doctor.phone}
+                                </p>
+
+                                <p>
+                                    Experience: {doctor.experience_years} years
+                                </p>
+
+                            </div>
+
+                        ))
+                    }
+
+                </div>
+
+            </div>
 
         </div>
     );

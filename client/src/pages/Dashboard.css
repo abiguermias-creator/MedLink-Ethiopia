@@ -1,0 +1,67 @@
+.dashboard {
+
+    padding: 40px;
+
+    text-align: center;
+
+}
+
+
+.dashboard h1 {
+
+    color: #2563eb;
+
+    margin-bottom: 15px;
+
+}
+
+
+.dashboard h2 {
+
+    margin-bottom: 10px;
+
+}
+
+
+.dashboard p {
+
+    color: #555;
+
+}
+
+
+.cards {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 30px;
+
+    margin-top: 40px;
+
+}
+
+
+.card {
+
+    background: white;
+
+    width: 250px;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+}
+
+
+.card h3 {
+
+    color: #2563eb;
+
+    margin-bottom: 15px;
+
+}

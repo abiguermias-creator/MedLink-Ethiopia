@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import API from "../api/api";
+import "./Patients.css";
 
 function Patients() {
 
@@ -36,29 +37,44 @@ function Patients() {
 
             <Navbar />
 
-            <h1>Patients</h1>
+            <div className="page">
 
-            {
-                patients.map((patient) => (
-                    <div key={patient.patient_id}>
+                <h1>
+                    Patients
+                </h1>
 
-                        <p>
-                            Name/User ID: {patient.user_id}
-                        </p>
 
-                        <p>
-                            Gender: {patient.gender}
-                        </p>
+                <div className="cards">
 
-                        <p>
-                            Phone: {patient.phone}
-                        </p>
+                    {
+                        patients.map((patient) => (
 
-                        <hr />
+                            <div className="card" key={patient.patient_id}>
 
-                    </div>
-                ))
-            }
+                                <h3>
+                                    Patient ID: {patient.patient_id}
+                                </h3>
+
+                                <p>
+                                    User ID: {patient.user_id}
+                                </p>
+
+                                <p>
+                                    Gender: {patient.gender}
+                                </p>
+
+                                <p>
+                                    Phone: {patient.phone}
+                                </p>
+
+                            </div>
+
+                        ))
+                    }
+
+                </div>
+
+            </div>
 
         </div>
     );

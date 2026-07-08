@@ -1,0 +1,73 @@
+.page {
+
+    padding: 40px;
+
+    text-align: center;
+
+}
+
+
+.page h1 {
+
+    color: #2563eb;
+
+    margin-bottom: 30px;
+
+}
+
+
+.cards {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 25px;
+
+}
+
+
+.card {
+
+    background: white;
+
+    width: 280px;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+}
+
+
+.card h3 {
+
+    color: #2563eb;
+
+    margin-bottom: 15px;
+
+}
+
+
+.card p {
+
+    margin: 10px;
+
+    color: #555;
+
+}
+.card strong {
+
+    display: block;
+
+    font-size: 40px;
+
+    color: #2563eb;
+
+    margin: 15px;
+
+}

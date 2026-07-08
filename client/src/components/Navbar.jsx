@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import "./Navbar.css";
 
 function Navbar() {
 
@@ -10,29 +11,35 @@ function Navbar() {
     };
 
     return (
-        <nav>
+        <nav className="navbar">
 
-            <h2>MedLink Ethiopia</h2>
+            <h2>
+                MedLink Ethiopia
+            </h2>
 
-            <Link to="/dashboard">
-                Dashboard
-            </Link>
+            <div className="nav-links">
 
-            <Link to="/patients">
-                Patients
-            </Link>
+                <Link to="/dashboard">
+                    Dashboard
+                </Link>
 
-            <Link to="/doctors">
-                Doctors
-            </Link>
+                <Link to="/patients">
+                    Patients
+                </Link>
 
-            <Link to="/appointments">
-                Appointments
-            </Link>
+                <Link to="/doctors">
+                    Doctors
+                </Link>
 
-            <button onClick={logout}>
-                Logout
-            </button>
+                <Link to="/appointments">
+                    Appointments
+                </Link>
+
+                <button onClick={logout}>
+                    Logout
+                </button>
+
+            </div>
 
         </nav>
     );

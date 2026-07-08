@@ -1,4 +1,18 @@
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f7fb;
+}
+
+h1, h2 {
+  color: #1e3a8a;
+}
+
+button {
+  cursor: pointer;
 }
