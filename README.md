@@ -206,6 +206,23 @@ The project uses Microsoft SQL Server with the following tables:
 * **Doctors** – Stores doctor information.
 * **Appointments** – Stores appointment records.
 
+## Database Schema & DDL
+
+The database structure and table definitions are available in:
+server/database/MedLinkDB.sql
+
+The database contains the following tables:
+
+- Users
+- Patients
+- Doctors
+- Appointments
+
+Relationships:
+- Users → Patients
+- Users → Doctors
+- Patients → Appointments
+- Doctors → Appointments
 ---
 
 # 🔗 Database Relationship
@@ -219,6 +236,7 @@ Patients
     │
     └──── Appointments ──── Doctors
 ```
+
 
 ---
 
