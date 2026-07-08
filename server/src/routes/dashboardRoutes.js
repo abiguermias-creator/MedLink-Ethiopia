@@ -3,76 +3,84 @@ const router = express.Router();
 
 const { poolPromise } = require("../config/db");
 
-const { protect } = require("../middleware/authMiddleware");
+const { protect, adminOnly } = require("../middleware/authMiddleware");
 
 
 
-router.get("/stats", protect, async (req, res) => {
+router.get(
+    "/stats",
+    protect,
+    adminOnly,
+    async (req, res) => {
 
-    try {
+        try {
 
-        const pool = await poolPromise;
-
-
-        const patients = await pool.request()
-            .query(`
-                SELECT COUNT(*) AS count
-                FROM Patients
-            `);
+            const pool = await poolPromise;
 
 
-        const doctors = await pool.request()
-            .query(`
-                SELECT COUNT(*) AS count
-                FROM Doctors
-            `);
-
-
-        const appointments = await pool.request()
-            .query(`
-                SELECT COUNT(*) AS count
-                FROM Appointments
-            `);
-
-
-        const pending = await pool.request()
-            .query(`
-                SELECT COUNT(*) AS count
-                FROM Appointments
-                WHERE status = 'Pending'
-            `);
+            const patients = await pool.request()
+                .query(`
+                    SELECT COUNT(*) AS count
+                    FROM Patients
+                `);
 
 
 
-        res.json({
-
-            patients: patients.recordset[0].count,
-
-            doctors: doctors.recordset[0].count,
-
-            appointments: appointments.recordset[0].count,
-
-            pending: pending.recordset[0].count
-
-        });
+            const doctors = await pool.request()
+                .query(`
+                    SELECT COUNT(*) AS count
+                    FROM Doctors
+                `);
 
 
 
-    } catch (error) {
+            const appointments = await pool.request()
+                .query(`
+                    SELECT COUNT(*) AS count
+                    FROM Appointments
+                `);
 
 
-        res.status(500).json({
 
-            message: "Dashboard statistics error",
+            const pending = await pool.request()
+                .query(`
+                    SELECT COUNT(*) AS count
+                    FROM Appointments
+                    WHERE status = 'Pending'
+                `);
 
-            error: error.message
 
-        });
 
+            res.json({
+
+                patients: patients.recordset[0].count,
+
+                doctors: doctors.recordset[0].count,
+
+                appointments: appointments.recordset[0].count,
+
+                pending: pending.recordset[0].count
+
+            });
+
+
+
+        } catch (error) {
+
+
+            res.status(500).json({
+
+                message: "Dashboard statistics error",
+
+                error: error.message
+
+            });
+
+
+        }
 
     }
-
-});
+);
 
 
 
