@@ -6,6 +6,8 @@ import "./Appointments.css";
 function Appointments() {
 
     const [appointments, setAppointments] = useState([]);
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
 
@@ -21,21 +23,33 @@ function Appointments() {
 
                 setAppointments(response.data);
 
+
             } catch (error) {
+
                 console.log(error);
+
+            } finally {
+
+                setLoading(false);
+
             }
 
         };
 
+
         getAppointments();
+
 
     }, []);
 
 
+
     return (
+
         <div>
 
             <Navbar />
+
 
             <div className="page">
 
@@ -44,70 +58,104 @@ function Appointments() {
                 </h1>
 
 
-                <div className="cards">
+                {
+                    loading ? (
 
-                    {
-                        appointments.map((appointment) => (
+                        <h3>
+                            Loading appointments...
+                        </h3>
 
-                            <div 
-                                className="card"
-                                key={appointment.appointment_id}
-                            >
-
-                                <h3>
-                                    Appointment ID: {appointment.appointment_id}
-                                </h3>
+                    ) : (
 
 
-                                <p>
-                                    Patient ID: {appointment.patient_id}
-                                </p>
+                        <div className="cards">
 
 
-                                <p>
-                                    Doctor ID: {appointment.doctor_id}
-                                </p>
+                            {
+                                appointments.length === 0 ? (
+
+                                    <h3>
+                                        No appointments found
+                                    </h3>
+
+                                ) : (
+
+                                    appointments.map((appointment) => (
+
+                                        <div 
+                                            className="card"
+                                            key={appointment.appointment_id}
+                                        >
+
+                                            <h3>
+                                                Appointment ID: {appointment.appointment_id}
+                                            </h3>
 
 
-                                <p>
-                                    Date: {appointment.appointment_date}
-                                </p>
+                                            <p>
+                                                Patient: {appointment.patient_name}
+                                            </p>
 
 
-                                <span 
-                                    className={
-                                        appointment.status === "Approved"
-                                        ? "status approved"
-                                        :
-                                        appointment.status === "Cancelled"
-                                        ? "status cancelled"
-                                        :
-                                        "status pending"
-                                    }
-                                >
-
-                                    {appointment.status}
-
-                                </span>
+                                            <p>
+                                                Doctor: {appointment.doctor_name}
+                                            </p>
 
 
-                                <p>
-                                    Notes: {appointment.notes || "No notes"}
-                                </p>
+                                            <p>
+                                                Specialization: {appointment.specialization}
+                                            </p>
 
 
-                            </div>
+                                            <p>
+                                                Date: {appointment.appointment_date}
+                                            </p>
 
-                        ))
-                    }
+
+                                            <span
+                                                className={
+                                                    appointment.status === "Approved"
+                                                    ? "status approved"
+                                                    :
+                                                    appointment.status === "Cancelled"
+                                                    ? "status cancelled"
+                                                    :
+                                                    "status pending"
+                                                }
+                                            >
+
+                                                {appointment.status}
+
+                                            </span>
 
 
-                </div>
+                                            <p>
+                                                Notes: {appointment.notes || "No notes"}
+                                            </p>
+
+
+                                        </div>
+
+                                    ))
+
+                                )
+                            }
+
+
+                        </div>
+
+                    )
+                }
+
 
             </div>
 
+
         </div>
+
     );
+
 }
+
 
 export default Appointments;

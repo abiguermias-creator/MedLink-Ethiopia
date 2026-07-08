@@ -6,6 +6,8 @@ import "./Doctors.css";
 function Doctors() {
 
     const [doctors, setDoctors] = useState([]);
+    const [loading, setLoading] = useState(true);
+
 
     useEffect(() => {
 
@@ -19,69 +21,123 @@ function Doctors() {
                     }
                 });
 
+
                 setDoctors(response.data);
 
+
             } catch (error) {
+
                 console.log(error);
+
+            } finally {
+
+                setLoading(false);
+
             }
 
         };
 
+
         getDoctors();
+
 
     }, []);
 
 
+
     return (
+
         <div>
 
             <Navbar />
 
+
             <div className="page">
+
 
                 <h1>
                     Doctors
                 </h1>
 
 
-                <div className="cards">
 
-                    {
-                        doctors.map((doctor) => (
+                {
+                    loading ? (
 
-                            <div className="card" key={doctor.doctor_id}>
+                        <h3>
+                            Loading doctors...
+                        </h3>
 
-                                <h3>
-                                    Doctor ID: {doctor.doctor_id}
-                                </h3>
+                    ) : (
 
-                                <p>
-                                    User ID: {doctor.user_id}
-                                </p>
 
-                                <p>
-                                    Specialization: {doctor.specialization}
-                                </p>
+                        <div className="cards">
 
-                                <p>
-                                    Phone: {doctor.phone}
-                                </p>
 
-                                <p>
-                                    Experience: {doctor.experience_years} years
-                                </p>
+                            {
+                                doctors.length === 0 ? (
 
-                            </div>
+                                    <h3>
+                                        No doctors found
+                                    </h3>
 
-                        ))
-                    }
+                                ) : (
 
-                </div>
+                                    doctors.map((doctor) => (
+
+                                        <div
+                                            className="card"
+                                            key={doctor.doctor_id}
+                                        >
+
+                                            <h3>
+                                                Doctor ID: {doctor.doctor_id}
+                                            </h3>
+
+
+                                            <p>
+                                                User ID: {doctor.user_id}
+                                            </p>
+
+
+                                            <p>
+                                                Specialization: {doctor.specialization}
+                                            </p>
+
+
+                                            <p>
+                                                Phone: {doctor.phone}
+                                            </p>
+
+
+                                            <p>
+                                                Experience: {doctor.experience_years} years
+                                            </p>
+
+
+                                        </div>
+
+                                    ))
+
+                                )
+                            }
+
+
+                        </div>
+
+                    )
+                }
+
+
 
             </div>
 
+
         </div>
+
     );
+
 }
+
 
 export default Doctors;
