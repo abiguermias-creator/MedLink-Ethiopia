@@ -252,6 +252,11 @@ Screenshots included in the project:
 
 ---
 
+## ER Diagram
+
+The Entity Relationship Diagram for the MedLink Ethiopia database is available here:
+
+ER_Diagram.png
 # 👨‍💻 Developer
 
 **Abigiya Ermias**
