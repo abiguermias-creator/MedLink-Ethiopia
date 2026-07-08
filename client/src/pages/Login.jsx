@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import API from "../api/api";
 
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,7 +19,11 @@ function Login() {
             password
         });
 
-        console.log(response.data);
+        localStorage.setItem("token", response.data.token);
+
+alert("Login Successful!");
+
+navigate("/dashboard");
 
     } catch (error) {
     console.log("Full Error:", error);
