@@ -12,12 +12,15 @@ MedLink Ethiopia is a web-based healthcare management system developed to simpli
 
 # 🚀 Features
 
-## Authentication
+## Authentication & Authorization
 
-* Secure admin login
-* JWT Authentication
-* Protected API routes
-* Logout functionality
+- Secure admin login
+- JWT Authentication
+- Protected API routes
+- Logout functionality
+- Role-based authorization
+- Admin-only access control
+- Password hashing using bcrypt
 
 ## Dashboard
 
@@ -77,9 +80,10 @@ Appointment Status:
 
 ## Backend
 
-* Node.js
-* Express.js
-* JWT Authentication
+- Node.js
+- Express.js
+- JWT Authentication
+- Morgan logging middleware
 
 ## Database
 
