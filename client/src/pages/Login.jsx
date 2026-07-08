@@ -3,23 +3,30 @@ import { useNavigate } from "react-router-dom";
 import API from "../api/api";
 import "./Login.css";
 
+
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const navigate = useNavigate();
+
 
 
     const handleLogin = async (e) => {
 
         e.preventDefault();
 
+        setError("");
+
         try {
 
             const response = await API.post("/auth/login", {
+
                 email,
                 password
+
             });
 
 
@@ -34,13 +41,12 @@ function Login() {
 
         } catch (error) {
 
-            console.log(error);
-
-            alert("Invalid email or password");
+            setError("Invalid email or password");
 
         }
 
     };
+
 
 
     return (
@@ -57,13 +63,25 @@ function Login() {
 
 
                 <h2>
-                    Healthcare Management System
+                    Login
                 </h2>
 
 
                 <p>
-                    Login to access your account
+                    Healthcare Management System
                 </p>
+
+
+
+                {
+                    error && (
+
+                        <p style={{color:"red"}}>
+                            {error}
+                        </p>
+
+                    )
+                }
 
 
 
@@ -78,9 +96,7 @@ function Login() {
 
                         value={email}
 
-                        onChange={(e) =>
-                            setEmail(e.target.value)
-                        }
+                        onChange={(e)=>setEmail(e.target.value)}
 
                     />
 
@@ -94,9 +110,7 @@ function Login() {
 
                         value={password}
 
-                        onChange={(e) =>
-                            setPassword(e.target.value)
-                        }
+                        onChange={(e)=>setPassword(e.target.value)}
 
                     />
 
@@ -110,6 +124,7 @@ function Login() {
 
 
                 </form>
+
 
 
             </div>

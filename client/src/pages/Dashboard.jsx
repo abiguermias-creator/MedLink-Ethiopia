@@ -6,78 +6,76 @@ import "./Dashboard.css";
 
 function Dashboard() {
 
-    const [patients, setPatients] = useState(0);
-    const [doctors, setDoctors] = useState(0);
-    const [appointments, setAppointments] = useState(0);
+
+    const [stats, setStats] = useState({
+
+        patients: 0,
+        doctors: 0,
+        appointments: 0,
+        pending: 0
+
+    });
+
+
+    const [loading, setLoading] = useState(true);
+
 
 
     useEffect(() => {
 
 
-        const getData = async () => {
+        const getStats = async () => {
+
 
             try {
 
 
-                const config = {
+                const response = await API.get("/dashboard/stats", {
+
                     headers: {
+
                         Authorization: `Bearer ${localStorage.getItem("token")}`
+
                     }
-                };
+
+                });
 
 
-                const patientsResponse = await API.get(
-                    "/patients",
-                    config
-                );
 
+                setStats(response.data);
 
-                const doctorsResponse = await API.get(
-                    "/doctors",
-                    config
-                );
-
-
-                const appointmentsResponse = await API.get(
-                    "/appointments",
-                    config
-                );
-
-
-                setPatients(
-                    patientsResponse.data.length
-                );
-
-
-                setDoctors(
-                    doctorsResponse.data.length
-                );
-
-
-                setAppointments(
-                    appointmentsResponse.data.length
-                );
 
 
             } catch (error) {
 
+
                 console.log(error);
 
+
+            } finally {
+
+
+                setLoading(false);
+
+
             }
+
 
         };
 
 
-        getData();
+        getStats();
 
 
     }, []);
 
 
 
+
     return (
 
         <div>
+
 
             <Navbar />
 
@@ -101,65 +99,80 @@ function Dashboard() {
 
 
 
-                <div className="cards">
-
-
-                    <div className="card">
+                {
+                    loading ? (
 
                         <h3>
-                            Patients
+                            Loading dashboard...
                         </h3>
 
-                        <strong>
-                            {patients}
-                        </strong>
 
-                        <p>
-                            Registered patients
-                        </p>
-
-                    </div>
+                    ) : (
 
 
+                        <div className="dashboard-cards">
 
 
-                    <div className="card">
+                            <div className="dashboard-card patients-card">
 
-                        <h3>
-                            Doctors
-                        </h3>
+                                <h3>
+                                    Patients
+                                </h3>
 
-                        <strong>
-                            {doctors}
-                        </strong>
+                                <h1>
+                                    {stats.patients}
+                                </h1>
 
-                        <p>
-                            Available doctors
-                        </p>
-
-                    </div>
+                            </div>
 
 
 
+                            <div className="dashboard-card doctors-card">
 
-                    <div className="card">
+                                <h3>
+                                    Doctors
+                                </h3>
 
-                        <h3>
-                            Appointments
-                        </h3>
+                                <h1>
+                                    {stats.doctors}
+                                </h1>
 
-                        <strong>
-                            {appointments}
-                        </strong>
-
-                        <p>
-                            Total appointments
-                        </p>
-
-                    </div>
+                            </div>
 
 
-                </div>
+
+                            <div className="dashboard-card appointments-card">
+
+                                <h3>
+                                    Appointments
+                                </h3>
+
+                                <h1>
+                                    {stats.appointments}
+                                </h1>
+
+                            </div>
+
+
+
+                            <div className="dashboard-card pending-card">
+
+                                <h3>
+                                    Pending
+                                </h3>
+
+                                <h1>
+                                    {stats.pending}
+                                </h1>
+
+                            </div>
+
+
+                        </div>
+
+                    )
+                }
+
 
 
             </div>

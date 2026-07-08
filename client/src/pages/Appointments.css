@@ -1,106 +1,32 @@
-.page {
-
-    padding: 40px;
-
-    text-align: center;
-
-}
-
-
-.page h1 {
-
-    color: #2563eb;
-
-    margin-bottom: 30px;
-
-}
-
-
-.cards {
-
-    display: flex;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 25px;
-
-}
-
-
-.card {
-
-    background: white;
-
-    width: 300px;
-
-    padding: 25px;
-
-    border-radius: 10px;
-
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-
-}
-
-
-.card h3 {
-
-    color: #2563eb;
-
-    margin-bottom: 15px;
-
-}
-
-
-.card p {
-
-    margin: 10px;
-
-    color: #555;
-
-}
-
-
-/* Appointment Status */
-
 .status {
 
-    display: inline-block;
-
-    padding: 8px 15px;
+    padding: 6px 15px;
 
     border-radius: 20px;
 
-    font-weight: bold;
+    color: white;
 
-    margin: 10px;
+    font-weight: bold;
 
 }
 
 
 .pending {
 
-    background: #fef3c7;
-
-    color: #92400e;
+    background: orange;
 
 }
 
 
 .approved {
 
-    background: #dcfce7;
-
-    color: #166534;
+    background: green;
 
 }
 
 
 .cancelled {
 
-    background: #fee2e2;
-
-    color: #991b1b;
+    background: red;
 
 }

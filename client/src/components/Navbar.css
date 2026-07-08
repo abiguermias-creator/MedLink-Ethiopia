@@ -1,60 +1,83 @@
 .navbar {
 
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
 
-    padding: 20px 40px;
+    padding: 15px 40px;
 
-    background: white;
+    background: #6d6543;
 
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    color: white;
 
 }
+
 
 
 .navbar h2 {
 
-    color: #2563eb;
+    margin: 0;
 
 }
+
 
 
 .nav-links {
 
     display: flex;
-    gap: 20px;
+
     align-items: center;
+
+    gap: 25px;
 
 }
 
 
+
 .nav-links a {
 
+    color: white;
+
     text-decoration: none;
-    color: #333;
+
     font-weight: bold;
 
 }
 
 
+
 .nav-links a:hover {
 
-    color: #2563eb;
+    text-decoration: underline;
 
 }
 
 
+
 .nav-links button {
 
-    background: #dc2626;
+    background: white;
 
-    color: white;
+    color: #eb2525;
 
     border: none;
 
-    padding: 8px 15px;
+    padding: 8px 18px;
 
-    border-radius: 5px;
+    border-radius: 20px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+
+.nav-links button:hover {
+
+    background: #e0e7ff;
 
 }

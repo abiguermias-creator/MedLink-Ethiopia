@@ -11,57 +11,79 @@
 
     color: #2563eb;
 
-    margin-bottom: 15px;
-
 }
 
 
-.dashboard h2 {
-
-    margin-bottom: 10px;
-
-}
-
-
-.dashboard p {
-
-    color: #555;
-
-}
-
-
-.cards {
+.dashboard-cards {
 
     display: flex;
 
     justify-content: center;
 
-    gap: 30px;
+    gap: 25px;
+
+    flex-wrap: wrap;
 
     margin-top: 40px;
 
 }
 
 
-.card {
 
-    background: white;
+.dashboard-card {
 
-    width: 250px;
+    width: 220px;
 
     padding: 30px;
 
-    border-radius: 10px;
+    border-radius: 15px;
 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    color: white;
+
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 
 }
 
 
-.card h3 {
 
-    color: #2563eb;
+.dashboard-card h1 {
 
-    margin-bottom: 15px;
+    font-size: 50px;
+
+    margin: 10px;
+
+    color: white;
+
+}
+
+
+
+.patients-card {
+
+    background: #1d2e54;
+
+}
+
+
+
+.doctors-card {
+
+    background: #0c4c25;
+
+}
+
+
+
+.appointments-card {
+
+    background: #371854;
+
+}
+
+
+
+.pending-card {
+
+    background: #8a380c;
 
 }
